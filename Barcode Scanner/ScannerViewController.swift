@@ -77,7 +77,13 @@ final class ScannerViewController: UIViewController {
         guard let previewLayer = previewLayer else { return }
         view.layer.addSublayer(previewLayer)
         
-        captureSession.startRunning()
+        
+        let dispatchQueue = DispatchQueue.global(qos: .background)
+        
+        dispatchQueue.async {
+            self.captureSession.startRunning()
+        }
+        
     }
 }
 
